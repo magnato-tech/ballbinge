@@ -285,6 +285,46 @@
       color: #333;
     }
     
+    /* Kartbilder styling */
+    .map-images {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+      margin-top: 30px;
+    }
+    
+    .map-item {
+      text-align: center;
+      background: white;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+    
+    .map-item h3 {
+      color: #007a33;
+      margin: 0 0 15px 0;
+      font-size: 1.2em;
+    }
+    
+    .map-image {
+      width: 100%;
+      height: auto;
+      border-radius: 8px;
+      border: 2px solid #e9ecef;
+      transition: transform 0.3s ease;
+    }
+    
+    .map-image:hover {
+      transform: scale(1.02);
+    }
+    
+    .map-item p {
+      margin: 15px 0 0 0;
+      color: #666;
+      font-size: 0.9em;
+    }
+    
     /* Forbedret donasjons-status */
     .donasjons-status h3 {
       color: #007a33;
@@ -399,8 +439,16 @@
       <div class="timeline-item">
         <div class="timeline-marker">○</div>
         <div class="timeline-content">
-          <h3>Dugnad og grunnarbeid</h3>
-          <p>Dugnad og grunnarbeid trinn 1: grave ned til fjell og fylle på sprengmasse</p>
+          <h3>Dugnad - felling av trær</h3>
+          <p>Dugnad for felling av trær på området</p>
+          <span class="timeline-date">Q4 2024</span>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-marker">○</div>
+        <div class="timeline-content">
+          <h3>Grunnarbeid trinn 1</h3>
+          <p>Grave ned til fjell og fylle på sprengmasse</p>
           <span class="timeline-date">Q4 2024</span>
         </div>
       </div>
@@ -408,8 +456,16 @@
         <div class="timeline-marker">○</div>
         <div class="timeline-content">
           <h3>Søknader om støtte</h3>
-          <p>Fortsetter søknader om støtte til kommunen</p>
+          <p>Søknader til kommunen og ulike tilskuddsordninger</p>
           <span class="timeline-date">Q4 2024 - Q1 2025</span>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-marker">○</div>
+        <div class="timeline-content">
+          <h3>Grunnarbeid trinn 2</h3>
+          <p>Plannering, komprimering, grusing og finavretting</p>
+          <span class="timeline-date">Q1 2025</span>
         </div>
       </div>
       <div class="timeline-item">
@@ -473,14 +529,18 @@
     <h2>Hvor skal ballbingen bygges?</h2>
     <p>Ballbingen skal bygges ved den gammle balløkka. Dette er den eneste plassen vi har fått godkjent for prosjektet.</p>
     <div class="map-container">
-      <div class="map-placeholder">
-        <div class="map-icon">📍</div>
-        <p><strong>Plassering:</strong> Ved den gammle balløkka</p>
-        <p><strong>Adresse:</strong> [Adresse vil bli lagt til når kart er tilgjengelig]</p>
-        <p><strong>Status:</strong> Godkjent plassering av kommunen</p>
+      <div class="map-images">
+        <div class="map-item">
+          <h3>Ballbingeområdet</h3>
+          <img src="assets/kartutsnitt_ballbinge.png" alt="Kart som viser ballbingeområdet" class="map-image">
+          <p>Detaljert kart over ballbingeområdet</p>
+        </div>
+        <div class="map-item">
+          <h3>Nabolaget</h3>
+          <img src="assets/kartutsnitt_nabolag.png" alt="Kart som viser nabolaget rundt ballbingen" class="map-image">
+          <p>Oversikt over nabolaget og plassering</p>
+        </div>
       </div>
-      <!-- Her kan du legge inn ditt kart når det er klart -->
-      <!-- <img src="assets/kart.png" alt="Kart som viser plassering av ballbinge"> -->
     </div>
   </section>
 
