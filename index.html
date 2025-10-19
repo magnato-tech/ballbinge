@@ -130,6 +130,218 @@
     .vipps-icon {
       font-size: 1.2em;
     }
+    
+    /* Tidslinje styling */
+    .tidslinje {
+      background: #f8f9fa;
+      padding: 60px 20px;
+    }
+    
+    .timeline-container {
+      max-width: 800px;
+      margin: 0 auto;
+      position: relative;
+    }
+    
+    .timeline-container::before {
+      content: '';
+      position: absolute;
+      left: 30px;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: #007a33;
+    }
+    
+    .timeline-item {
+      position: relative;
+      margin-bottom: 40px;
+      padding-left: 80px;
+    }
+    
+    .timeline-marker {
+      position: absolute;
+      left: 20px;
+      top: 0;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: #007a33;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      font-weight: bold;
+      z-index: 2;
+    }
+    
+    .timeline-item.completed .timeline-marker {
+      background: #28a745;
+    }
+    
+    .timeline-item.current .timeline-marker {
+      background: #ffc107;
+      color: #333;
+      animation: pulse 2s infinite;
+    }
+    
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.1); }
+      100% { transform: scale(1); }
+    }
+    
+    .timeline-content {
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    
+    .timeline-content h3 {
+      margin: 0 0 10px 0;
+      color: #007a33;
+    }
+    
+    .timeline-date {
+      color: #666;
+      font-size: 0.9em;
+      font-weight: bold;
+    }
+    
+    /* Fordeler styling */
+    .fordeler {
+      background: #e8f5e8;
+      padding: 60px 20px;
+    }
+    
+    .benefit-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+    
+    .benefit-item {
+      text-align: center;
+      padding: 30px 20px;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    
+    .benefit-item:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+    }
+    
+    .benefit-icon {
+      font-size: 3em;
+      margin-bottom: 15px;
+    }
+    
+    .benefit-item h3 {
+      color: #007a33;
+      margin: 0 0 15px 0;
+      font-size: 1.3em;
+    }
+    
+    .benefit-item p {
+      color: #666;
+      line-height: 1.6;
+      margin: 0;
+    }
+    
+    /* Kart styling */
+    .kart {
+      background: #f0f8ff;
+      padding: 60px 20px;
+    }
+    
+    .map-container {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    
+    .map-placeholder {
+      background: white;
+      padding: 40px;
+      border-radius: 12px;
+      text-align: center;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      border: 2px dashed #007a33;
+    }
+    
+    .map-icon {
+      font-size: 4em;
+      margin-bottom: 20px;
+    }
+    
+    .map-placeholder p {
+      margin: 10px 0;
+      color: #333;
+    }
+    
+    /* Forbedret donasjons-status */
+    .donasjons-status h3 {
+      color: #007a33;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+    
+    .donation-goal {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 20px;
+      padding: 15px;
+      background: #f8f9fa;
+      border-radius: 8px;
+      border: 1px solid #e9ecef;
+    }
+    
+    .goal-info, .goal-deadline {
+      text-align: center;
+    }
+    
+    .goal-label, .deadline-label {
+      display: block;
+      font-size: 0.9em;
+      color: #666;
+      margin-bottom: 5px;
+    }
+    
+    .goal-amount, .deadline-date {
+      font-weight: bold;
+      color: #007a33;
+      font-size: 1.1em;
+    }
+    
+    /* Responsiv design for mindre skjermer */
+    @media (max-width: 768px) {
+      .donation-goal {
+        flex-direction: column;
+        gap: 15px;
+      }
+      
+      .benefit-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .timeline-item {
+        padding-left: 60px;
+      }
+      
+      .timeline-container::before {
+        left: 20px;
+      }
+      
+      .timeline-marker {
+        left: 10px;
+      }
+    }
   </style>
 </head>
 <body>
@@ -156,6 +368,106 @@
     <img src="assets/minimalistiskBB.png" alt="Illustrasjon av planlagt ballbinge">
   </section>
 
+  <!-- TIDSLINJE -->
+  <section class="tidslinje" id="tidslinje">
+    <h2>Prosjektets fremdrift</h2>
+    <div class="timeline-container">
+      <div class="timeline-item completed">
+        <div class="timeline-marker">✓</div>
+        <div class="timeline-content">
+          <h3>Planlegging og design</h3>
+          <p>Utarbeidet planer og design for ballbingen</p>
+          <span class="timeline-date">Q4 2024</span>
+        </div>
+      </div>
+      <div class="timeline-item completed">
+        <div class="timeline-marker">✓</div>
+        <div class="timeline-content">
+          <h3>Finansiering og søknader</h3>
+          <p>Innsamling av midler og søknader til kommunen</p>
+          <span class="timeline-date">Q1 2025</span>
+        </div>
+      </div>
+      <div class="timeline-item current">
+        <div class="timeline-marker">●</div>
+        <div class="timeline-content">
+          <h3>Godkjenning og tillatelser</h3>
+          <p>Venter på godkjenning fra kommunen</p>
+          <span class="timeline-date">Q1 2025</span>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-marker">○</div>
+        <div class="timeline-content">
+          <h3>Byggearbeid</h3>
+          <p>Start av byggearbeid og grunnarbeid</p>
+          <span class="timeline-date">Q2 2025</span>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-marker">○</div>
+        <div class="timeline-content">
+          <h3>Ferdigstillelse</h3>
+          <p>Ballbingen står ferdig og åpner for bruk</p>
+          <span class="timeline-date">Q3 2025</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FORDELER -->
+  <section class="fordeler" id="fordeler">
+    <h2>Hvorfor en ballbinge?</h2>
+    <div class="benefit-grid">
+      <div class="benefit-item">
+        <div class="benefit-icon">🏃‍♂️</div>
+        <h3>Fysisk aktivitet</h3>
+        <p>Fremmer sunn livsstil og fysisk aktivitet for alle aldre</p>
+      </div>
+      <div class="benefit-item">
+        <div class="benefit-icon">👥</div>
+        <h3>Sosial samhandling</h3>
+        <p>Skaper møteplasser og styrker naboskapet</p>
+      </div>
+      <div class="benefit-item">
+        <div class="benefit-icon">⚽</div>
+        <h3>Idrett og lek</h3>
+        <p>Muligheter for organisert idrett og fritidslek</p>
+      </div>
+      <div class="benefit-item">
+        <div class="benefit-icon">🌱</div>
+        <h3>Miljøvennlig</h3>
+        <p>Kunstgress som tåler helårsbruk og krever minimal vedlikehold</p>
+      </div>
+      <div class="benefit-item">
+        <div class="benefit-icon">🛡️</div>
+        <h3>Trygt miljø</h3>
+        <p>Et trygt og inkluderende sted for alle i nabolaget</p>
+      </div>
+      <div class="benefit-item">
+        <div class="benefit-icon">🏘️</div>
+        <h3>Naboskap</h3>
+        <p>Styrker fellesskapet og skaper stolthet for området</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- KART -->
+  <section class="kart" id="kart">
+    <h2>Hvor skal ballbingen bygges?</h2>
+    <p>Ballbingen skal bygges ved den gammle balløkka, midt i nabolaget for enkel tilgang for alle.</p>
+    <div class="map-container">
+      <div class="map-placeholder">
+        <div class="map-icon">📍</div>
+        <p><strong>Plassering:</strong> Ved den gammle balløkka</p>
+        <p><strong>Adresse:</strong> [Adresse vil bli lagt til når kart er tilgjengelig]</p>
+        <p><strong>Nærhet:</strong> Sentralt plassert for alle i nabolaget</p>
+      </div>
+      <!-- Her kan du legge inn ditt kart når det er klart -->
+      <!-- <img src="assets/kart.png" alt="Kart som viser plassering av ballbinge"> -->
+    </div>
+  </section>
+
   <!-- FINANSIERING -->
   <section class="finansiering" id="finansiering">
     <h2>Finansiering</h2>
@@ -176,10 +488,21 @@
   <p><strong>Vipps:</strong> <span id="vipps-number">hentes…</span> (merk "Ballbinge Vågsbygd")</p>
 
   <div class="donasjons-status">
+    <h3>Donasjonsstatus</h3>
     <div class="progress-container">
       <div id="progress-bar" class="progress-bar" style="width:0%">Laster…</div>
     </div>
     <div id="donasjon-tekst" style="margin-top:0.4em;">Samlet inn: ...</div>
+    <div class="donation-goal">
+      <div class="goal-info">
+        <span class="goal-label">Mål:</span>
+        <span class="goal-amount">500 000 kr</span>
+      </div>
+      <div class="goal-deadline">
+        <span class="deadline-label">Målsetning:</span>
+        <span class="deadline-date">Q2 2025</span>
+      </div>
+    </div>
   </div>
 
   <!-- Vipps-donasjonsskjema -->
