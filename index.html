@@ -361,6 +361,65 @@
       text-align: left;
     }
     
+    /* Sports illustrations styling */
+    .sports-illustrations {
+      margin-top: 40px;
+      padding: 30px;
+      background: #f8f9fa;
+      border-radius: 12px;
+    }
+    
+    .sports-illustrations h3 {
+      color: #007a33;
+      text-align: center;
+      margin-bottom: 30px;
+      font-size: 1.4em;
+    }
+    
+    .sports-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 25px;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    
+    .sport-item {
+      text-align: center;
+      background: white;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    
+    .sport-item:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+    }
+    
+    .sport-image {
+      width: 80px;
+      height: 80px;
+      object-fit: contain;
+      margin-bottom: 15px;
+      border-radius: 8px;
+    }
+    
+    .sport-item h4 {
+      color: #007a33;
+      margin: 0 0 10px 0;
+      font-size: 1.1em;
+    }
+    
+    .sport-item p {
+      color: #666;
+      margin: 0;
+      font-size: 0.9em;
+      line-height: 1.4;
+    }
+    
+    
     /* Forbedret donasjons-status */
     .donasjons-status h3 {
       color: #007a33;
@@ -457,6 +516,27 @@
     <h2>Prosjektet</h2>
     <p>Ballbingen skal bygges ved den gammle balløkka og vil være tilgjengelig for alle. Underlaget blir kunstgress som tåler helårsbruk.</p>
     <img src="assets/minimalistiskBB.png" alt="Illustrasjon av planlagt ballbinge">
+    
+    <div class="sports-illustrations">
+      <h3>Ballspill som kan spilles på ballbingen</h3>
+      <div class="sports-grid">
+        <div class="sport-item">
+          <img src="assets/animert_fotballbilde.png" alt="Fotball" class="sport-image">
+          <h4>Fotball</h4>
+          <p>Perfekt for fotballtrening og kamper</p>
+        </div>
+        <div class="sport-item">
+          <img src="assets/basketball_jenter.png" alt="Basketball" class="sport-image">
+          <h4>Basketball</h4>
+          <p>Basketball for alle aldersgrupper</p>
+        </div>
+        <div class="sport-item">
+          <img src="assets/volleyball.png" alt="Volleyball" class="sport-image">
+          <h4>Volleyball</h4>
+          <p>Volleyball og håndball</p>
+        </div>
+      </div>
+    </div>
   </section>
 
   <!-- TIDSLINJE -->
