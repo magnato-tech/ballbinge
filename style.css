@@ -8,7 +8,7 @@ body {
 .hero {
   position: relative;
   background: url("assets/ballbinge1.png") no-repeat center center/cover;
-  height: 108vh; /* Økt med 20 % fra 90vh til 108vh */
+  height: 99vh; /* Økt med 10 % fra 90vh til 99vh */
   display: flex;
   align-items: flex-start;     /* flytter innholdet mot toppen */
   justify-content: center;     /* behold midtstilt horisontalt */
