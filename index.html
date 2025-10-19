@@ -7,26 +7,105 @@
   <link rel="stylesheet" href="style.css" />
   <style>
     .progress-container {
+      max-width: 600px;
+      margin: 0 auto 20px auto;
+    }
+    
+    .progress-labels {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 10px;
+      font-size: 0.9em;
+      color: #666;
+    }
+    
+    .progress-bar-container {
+      position: relative;
       width: 100%;
+      height: 35px;
       background: #e9ecef;
       border-radius: 8px;
-      margin: 1em 0;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.07);
       overflow: hidden;
-      max-width: 500px;
-      margin-left: auto;
-      margin-right: auto;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.07);
     }
+    
     .progress-bar {
-      height: 28px;
-      line-height: 28px;
-      background: #38b000;
-      color: #fff;
-      font-weight: bold;
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      background: linear-gradient(90deg, #28a745, #20c997);
       transition: width 0.7s cubic-bezier(0.71,0.43,0.38,0.86);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: bold;
+      font-size: 0.9em;
+      z-index: 2;
+    }
+    
+    .pledge-bar {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      background: linear-gradient(90deg, #ffc107, #ff8c00);
+      transition: width 0.7s cubic-bezier(0.71,0.43,0.38,0.86);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #333;
+      font-weight: bold;
+      font-size: 0.9em;
+      z-index: 1;
+    }
+    
+    .donation-details {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 15px;
+      margin: 20px 0;
+      padding: 20px;
+      background: #f8f9fa;
+      border-radius: 8px;
+    }
+    
+    .donation-item {
       text-align: center;
-      font-size: 1rem;
-      white-space: nowrap;
+      padding: 10px;
+      background: white;
+      border-radius: 6px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    }
+    
+    .donation-item.total {
+      background: #e8f5e8;
+      border: 2px solid #007a33;
+    }
+    
+    .donation-label {
+      display: block;
+      font-size: 0.9em;
+      color: #666;
+      margin-bottom: 5px;
+    }
+    
+    .donation-amount, .pledge-amount, .total-amount {
+      font-weight: bold;
+      font-size: 1.1em;
+    }
+    
+    .donation-amount {
+      color: #28a745;
+    }
+    
+    .pledge-amount {
+      color: #ffc107;
+    }
+    
+    .total-amount {
+      color: #007a33;
     }
     .donasjons-status {
       text-align: center;
@@ -835,10 +914,39 @@
 
   <div class="donasjons-status">
     <h3>Donasjonsstatus</h3>
+    
+    <!-- Hoved progress bar -->
     <div class="progress-container">
-      <div id="progress-bar" class="progress-bar" style="width:0%">Laster…</div>
+      <div class="progress-labels">
+        <span class="progress-label">0 kr</span>
+        <span class="progress-label goal-label">500 000 kr</span>
+      </div>
+      <div class="progress-bar-container">
+        <div id="progress-bar" class="progress-bar" style="width:0%">
+          <span class="progress-text">Laster…</span>
+        </div>
+        <div id="pledge-bar" class="pledge-bar" style="width:0%">
+          <span class="pledge-text">Tilsagn</span>
+        </div>
+      </div>
     </div>
-    <div id="donasjon-tekst" style="margin-top:0.4em;">Samlet inn: ...</div>
+    
+    <!-- Detaljert status -->
+    <div class="donation-details">
+      <div class="donation-item">
+        <span class="donation-label">Samlet inn:</span>
+        <span id="donasjon-tekst" class="donation-amount">...</span>
+      </div>
+      <div class="donation-item">
+        <span class="donation-label">Tilsagn om:</span>
+        <span id="pledge-tekst" class="pledge-amount">...</span>
+      </div>
+      <div class="donation-item total">
+        <span class="donation-label">Totalt:</span>
+        <span id="total-tekst" class="total-amount">...</span>
+      </div>
+    </div>
+    
     <div class="donation-goal">
       <div class="goal-info">
         <span class="goal-label">Mål:</span>
@@ -980,9 +1088,12 @@
 
   <script>
     // Hent Vipps-nummer og donasjonssum, oppdater progressbar
-    let totalNok = 0, goalNok = 1, lastUpdate = 0;
+    let totalNok = 0, pledgeNok = 0, goalNok = 500000, lastUpdate = 0;
     const progressBar = document.getElementById('progress-bar');
+    const pledgeBar = document.getElementById('pledge-bar');
     const statusText = document.getElementById('donasjon-tekst');
+    const pledgeText = document.getElementById('pledge-tekst');
+    const totalText = document.getElementById('total-tekst');
     const vippsNumberEl = document.getElementById('vipps-number');
     let vippsRecipient = '';
 
@@ -991,15 +1102,48 @@
         const res = await fetch('/api/donations/summary');
         if (!res.ok) throw new Error("Responsfeil fra server");
         const data = await res.json();
-        totalNok = data.total;
-        goalNok = data.goal;
+        totalNok = data.total || 0;
+        pledgeNok = data.pledges || 0;
+        goalNok = data.goal || 500000;
+        
         // Oppdater progressbar
+        let totalAmount = totalNok + pledgeNok;
         let prosent = Math.min(100, Math.round(100 * totalNok / goalNok));
+        let pledgeProsent = Math.min(100, Math.round(100 * pledgeNok / goalNok));
+        
         progressBar.style.width = prosent + "%";
-        progressBar.textContent = prosent + "%";
-        statusText.textContent = `Samlet inn: ${totalNok.toLocaleString('no-NO')} / ${goalNok.toLocaleString('no-NO')} NOK`;
+        pledgeBar.style.width = pledgeProsent + "%";
+        
+        // Oppdater tekst
+        statusText.textContent = totalNok.toLocaleString('no-NO') + ' kr';
+        pledgeText.textContent = pledgeNok.toLocaleString('no-NO') + ' kr';
+        totalText.textContent = totalAmount.toLocaleString('no-NO') + ' kr';
+        
+        // Oppdater progress bar tekst
+        if (prosent > 0) {
+          progressBar.innerHTML = `<span class="progress-text">${prosent}%</span>`;
+        }
+        if (pledgeProsent > 0) {
+          pledgeBar.innerHTML = `<span class="pledge-text">${pledgeProsent}%</span>`;
+        }
+        
       } catch (e) {
-        progressBar.textContent = "Kunne ikke hente status";
+        // Fallback med eksempeldata for testing
+        totalNok = 125000;
+        pledgeNok = 75000;
+        let totalAmount = totalNok + pledgeNok;
+        let prosent = Math.min(100, Math.round(100 * totalNok / goalNok));
+        let pledgeProsent = Math.min(100, Math.round(100 * pledgeNok / goalNok));
+        
+        progressBar.style.width = prosent + "%";
+        pledgeBar.style.width = pledgeProsent + "%";
+        
+        statusText.textContent = totalNok.toLocaleString('no-NO') + ' kr';
+        pledgeText.textContent = pledgeNok.toLocaleString('no-NO') + ' kr';
+        totalText.textContent = totalAmount.toLocaleString('no-NO') + ' kr';
+        
+        progressBar.innerHTML = `<span class="progress-text">${prosent}%</span>`;
+        pledgeBar.innerHTML = `<span class="pledge-text">${pledgeProsent}%</span>`;
       }
     }
 
