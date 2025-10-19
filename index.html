@@ -419,6 +419,132 @@
       line-height: 1.4;
     }
     
+    /* Midten CTA styling */
+    .mid-cta {
+      text-align: center;
+      margin: 40px 0 20px 0;
+    }
+    
+    /* Leverandører styling */
+    .leverandorer {
+      background: #f8f9fa;
+      padding: 60px 20px;
+    }
+    
+    .supplier-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+      margin: 30px 0;
+    }
+    
+    .supplier-category {
+      background: white;
+      padding: 25px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+    
+    .supplier-category h3 {
+      color: #007a33;
+      margin: 0 0 15px 0;
+      font-size: 1.2em;
+    }
+    
+    .supplier-placeholder {
+      padding: 20px;
+      background: #f8f9fa;
+      border-radius: 8px;
+      border: 2px dashed #007a33;
+    }
+    
+    .supplier-placeholder p {
+      color: #666;
+      margin: 0 0 10px 0;
+      font-size: 0.9em;
+    }
+    
+    .supplier-status {
+      background: #ffc107;
+      color: #333;
+      padding: 5px 15px;
+      border-radius: 20px;
+      font-size: 0.8em;
+      font-weight: bold;
+    }
+    
+    .supplier-cta {
+      text-align: center;
+      margin-top: 30px;
+      padding: 20px;
+      background: #e8f5e8;
+      border-radius: 8px;
+    }
+    
+    .supplier-cta p {
+      margin: 5px 0;
+      color: #333;
+    }
+    
+    /* Social sharing styling */
+    .social-sharing {
+      background: #e8f5e8;
+      padding: 60px 20px;
+      text-align: center;
+    }
+    
+    .share-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 15px;
+      margin-top: 30px;
+    }
+    
+    .share-btn {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 20px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: all 0.3s ease;
+      border: none;
+      cursor: pointer;
+      font-size: 0.9em;
+    }
+    
+    .share-btn.facebook {
+      background: #1877f2;
+      color: white;
+    }
+    
+    .share-btn.twitter {
+      background: #1da1f2;
+      color: white;
+    }
+    
+    .share-btn.whatsapp {
+      background: #25d366;
+      color: white;
+    }
+    
+    .share-btn.copy {
+      background: #6c757d;
+      color: white;
+    }
+    
+    .share-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    }
+    
+    .share-icon {
+      font-size: 1.2em;
+    }
+    
     
     /* Forbedret donasjons-status */
     .donasjons-status h3 {
@@ -661,6 +787,11 @@
         <p>Velforeningen jobber for å etablere et nabolag med mer sosial kontakt og samhold gjennom aktiviteter utendørs.</p>
       </div>
     </div>
+    
+    <!-- Midten CTA -->
+    <div class="mid-cta">
+      <a href="#bidra" class="cta-btn">Støtt prosjektet nå</a>
+    </div>
   </section>
 
   <!-- KART -->
@@ -767,6 +898,74 @@
   <a href="#kontakt" class="cta-btn">Ta kontakt</a>
 </section>
 
+
+  <!-- LEVERANDØRER -->
+  <section class="leverandorer" id="leverandorer">
+    <h2>Våre leverandører</h2>
+    <p>Vi samarbeider med lokale og nasjonale leverandører for å sikre kvalitet og beste pris.</p>
+    
+    <div class="supplier-grid">
+      <div class="supplier-category">
+        <h3>Grunnarbeid</h3>
+        <div class="supplier-placeholder">
+          <p>Leverandør for grunnarbeid trinn 1 og 2</p>
+          <span class="supplier-status">Kommer snart</span>
+        </div>
+      </div>
+      
+      <div class="supplier-category">
+        <h3>Kunstgress og materialer</h3>
+        <div class="supplier-placeholder">
+          <p>Leverandør for kunstgress og ballbinge-materialer</p>
+          <span class="supplier-status">Kommer snart</span>
+        </div>
+      </div>
+      
+      <div class="supplier-category">
+        <h3>Utstyr og installasjon</h3>
+        <div class="supplier-placeholder">
+          <p>Leverandør for mål, nett og annet utstyr</p>
+          <span class="supplier-status">Kommer snart</span>
+        </div>
+      </div>
+    </div>
+    
+    <div class="supplier-cta">
+      <p><strong>Interessert i å bli leverandør?</strong></p>
+      <p>Kontakt oss for å diskutere muligheter for samarbeid!</p>
+    </div>
+  </section>
+
+  <!-- SOCIAL SHARING -->
+  <section class="social-sharing" id="social">
+    <h2>Del prosjektet</h2>
+    <p>Hjelp oss å spre ordet om ballbingeprosjektet!</p>
+    
+    <div class="share-buttons">
+      <a href="https://www.facebook.com/sharer/sharer.php?u=https://magnato-tech.github.io/ballbinge" 
+         target="_blank" class="share-btn facebook">
+        <span class="share-icon">📘</span>
+        Del på Facebook
+      </a>
+      
+      <a href="https://twitter.com/intent/tweet?text=Sammen bygger vi ny ballbinge for vårt nabolag! Støtt prosjektet:&url=https://magnato-tech.github.io/ballbinge" 
+         target="_blank" class="share-btn twitter">
+        <span class="share-icon">🐦</span>
+        Del på Twitter
+      </a>
+      
+      <a href="https://wa.me/?text=Sammen bygger vi ny ballbinge for vårt nabolag! Støtt prosjektet: https://magnato-tech.github.io/ballbinge" 
+         target="_blank" class="share-btn whatsapp">
+        <span class="share-icon">💬</span>
+        Del på WhatsApp
+      </a>
+      
+      <button onclick="copyLink()" class="share-btn copy">
+        <span class="share-icon">📋</span>
+        Kopier lenke
+      </button>
+    </div>
+  </section>
 
   <!-- KONTAKT -->
   <section class="kontakt" id="kontakt">
@@ -900,6 +1099,23 @@
       }, 1500);
       
       return false;
+    }
+    
+    // Copy link funksjon
+    function copyLink() {
+      const url = window.location.href;
+      navigator.clipboard.writeText(url).then(() => {
+        alert('Lenke kopiert til utklippstavle!');
+      }).catch(() => {
+        // Fallback for eldre nettlesere
+        const textArea = document.createElement('textarea');
+        textArea.value = url;
+        document.body.appendChild(textArea);
+        textArea.select();
+        document.execCommand('copy');
+        document.body.removeChild(textArea);
+        alert('Lenke kopiert til utklippstavle!');
+      });
     }
   </script>
 </body>
