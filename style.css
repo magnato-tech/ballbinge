@@ -5,16 +5,37 @@ body {
   color: #333;
 }
 
-/* HERO */
 .hero {
   position: relative;
   background: url("assets/ballbinge1.png") no-repeat center center/cover;
-  height: 90vh;
+  height: 108vh; /* Økt med 20 % fra 90vh til 108vh */
   display: flex;
-  align-items: center;
-  justify-content: center;
+  align-items: flex-start;     /* flytter innholdet mot toppen */
+  justify-content: center;     /* behold midtstilt horisontalt */
   text-align: center;
   color: white;
+  padding-top: 15vh;           /* gir litt luft fra toppen */
+}
+
+.hero-content {
+  max-width: 700px;
+  background: rgba(0, 0, 0, 0.3); /* lett gjennomsiktig bakgrunn for lesbarhet */
+  padding: 1em 2em;
+  border-radius: 12px;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
+  opacity: 0;
+  animation: fadeInHeroText 1.2s ease-out 0.3s forwards;
+}
+
+@keyframes fadeInHeroText {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .overlay {
@@ -23,14 +44,15 @@ body {
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.25); /* gjør bildet tydeligere */
+  z-index: 1;
 }
 
 .hero-content {
   position: relative;
   z-index: 2;
-  max-width: 700px;
 }
+
 
 .cta-btn {
   display: inline-block;
@@ -112,4 +134,3 @@ footer {
   text-align: center;
   padding: 15px;
 }
-
