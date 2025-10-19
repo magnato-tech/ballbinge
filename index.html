@@ -325,6 +325,42 @@
       font-size: 0.9em;
     }
     
+    /* Benefits highlight styling */
+    .benefits-highlight {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      margin: 30px 0;
+    }
+    
+    .benefit-card {
+      background: #f8f9fa;
+      padding: 25px;
+      border-radius: 12px;
+      border-left: 4px solid #007a33;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    
+    .benefit-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+    }
+    
+    .benefit-card h3 {
+      color: #007a33;
+      margin: 0 0 15px 0;
+      font-size: 1.1em;
+      line-height: 1.3;
+    }
+    
+    .benefit-card p {
+      color: #555;
+      line-height: 1.6;
+      margin: 0;
+      text-align: left;
+    }
+    
     /* Forbedret donasjons-status */
     .donasjons-status h3 {
       color: #007a33;
@@ -399,6 +435,21 @@
   <section class="info" id="bakgrunn">
     <h2>Hvorfor trenger vi en ballbinge?</h2>
     <p>Ballbingen blir tilrettelagt for ulike typer ballspill som fotball, håndball, volleyball og basketball. Den vil være et sosialt og inkluderende samlingspunkt for lek, idrett og fellesskap – både i skoletiden og på fritiden.</p>
+    
+    <div class="benefits-highlight">
+      <div class="benefit-card">
+        <h3>🏘️ Styrker samhold og fellesskap</h3>
+        <p>Ballbingeprosjektet styrker samhold og fellesskap i lokalmiljøet gjennom felles aktivitet og møtested.</p>
+      </div>
+      <div class="benefit-card">
+        <h3>💪 Fremmer helse og trivsel</h3>
+        <p>Prosjektet fremmer helse og fremmer trivsel ved å oppmuntre til fysisk aktivitet i nærmiljøet.</p>
+      </div>
+      <div class="benefit-card">
+        <h3>🌍 Universell utforming</h3>
+        <p>Anlegget er designet for å være tilgjengelig og brukervennlig for alle aldersgrupper og funksjonsnivåer.</p>
+      </div>
+    </div>
   </section>
 
   <!-- PROSJEKT -->
@@ -493,33 +544,33 @@
     <div class="benefit-grid">
       <div class="benefit-item">
         <div class="benefit-icon">🏃‍♂️</div>
-        <h3>Fysisk aktivitet</h3>
-        <p>Fremmer sunn livsstil og fysisk aktivitet for alle aldre</p>
+        <h3>Motivere til økt aktivitet</h3>
+        <p>Ballbingen gir et attraktivt miljø som oppmuntrer til mer fysisk bevegelse blant alle aldersgrupper.</p>
       </div>
       <div class="benefit-item">
         <div class="benefit-icon">👥</div>
-        <h3>Sosial samhandling</h3>
-        <p>Skaper møteplasser og styrker naboskapet</p>
+        <h3>Trygge sosiale arenaer</h3>
+        <p>Ballbingen vil fungere som en møteplass hvor barn og foreldre kan bygge vennskap i trygge og inkluderende omgivelser.</p>
       </div>
       <div class="benefit-item">
-        <div class="benefit-icon">⚽</div>
-        <h3>Idrett og lek</h3>
-        <p>Muligheter for organisert idrett og fritidslek</p>
+        <div class="benefit-icon">🌍</div>
+        <h3>Universell utforming</h3>
+        <p>Anlegget er designet for å være tilgjengelig og brukervennlig for alle aldersgrupper og funksjonsnivåer.</p>
       </div>
       <div class="benefit-item">
-        <div class="benefit-icon">🌱</div>
-        <h3>Miljøvennlig</h3>
-        <p>Kunstgress som tåler helårsbruk og krever minimal vedlikehold</p>
+        <div class="benefit-icon">❤️</div>
+        <h3>Sosialt samvær og inkludering</h3>
+        <p>En ballbinge bidrar til økt sosialt samvær og inkluderer både barn, unge og foreldre og besteforeldre.</p>
       </div>
       <div class="benefit-item">
-        <div class="benefit-icon">🛡️</div>
-        <h3>Trygt miljø</h3>
-        <p>Et trygt og inkluderende sted for alle i nabolaget</p>
+        <div class="benefit-icon">💪</div>
+        <h3>Aktiv fritid fremmer helse</h3>
+        <p>Engasjement i fysisk aktivitet styrker både fysisk og mental helse.</p>
       </div>
       <div class="benefit-item">
         <div class="benefit-icon">🏘️</div>
-        <h3>Naboskap</h3>
-        <p>Styrker fellesskapet og skaper stolthet for området</p>
+        <h3>Samhold og engasjement</h3>
+        <p>Velforeningen jobber for å etablere et nabolag med mer sosial kontakt og samhold gjennom aktiviteter utendørs.</p>
       </div>
     </div>
   </section>
