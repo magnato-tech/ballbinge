@@ -100,8 +100,12 @@
       color: #28a745;
     }
     
-    .pledge-amount {
-      color: #ffc107;
+    .equity-amount {
+      color: #6f42c1;
+    }
+    
+    .stotte-amount {
+      color: #17a2b8;
     }
     
     .total-amount {
@@ -940,12 +944,16 @@
     <!-- Detaljert status -->
     <div class="donation-details">
       <div class="donation-item">
+        <span class="donation-label">Egenkapital:</span>
+        <span id="equity-tekst" class="equity-amount">35 000 kr</span>
+      </div>
+      <div class="donation-item">
         <span class="donation-label">Samlet inn:</span>
         <span id="donasjon-tekst" class="donation-amount">...</span>
       </div>
       <div class="donation-item">
-        <span class="donation-label">Tilsagn om:</span>
-        <span id="pledge-tekst" class="pledge-amount">...</span>
+        <span class="donation-label">Støttemidler:</span>
+        <span id="stotte-tekst" class="stotte-amount">...</span>
       </div>
       <div class="donation-item total">
         <span class="donation-label">Totalt:</span>
@@ -1111,11 +1119,12 @@
 
   <script>
     // Hent Vipps-nummer og donasjonssum, oppdater progressbar
-    let totalNok = 0, pledgeNok = 0, goalNok = 500000, lastUpdate = 0;
+    let totalNok = 0, stotteNok = 0, equityNok = 35000, goalNok = 500000, lastUpdate = 0;
     const progressBar = document.getElementById('progress-bar');
     const pledgeBar = document.getElementById('pledge-bar');
     const statusText = document.getElementById('donasjon-tekst');
-    const pledgeText = document.getElementById('pledge-tekst');
+    const stotteText = document.getElementById('stotte-tekst');
+    const equityText = document.getElementById('equity-tekst');
     const totalText = document.getElementById('total-tekst');
     const vippsNumberEl = document.getElementById('vipps-number');
     let vippsRecipient = '';
@@ -1126,44 +1135,46 @@
         if (!res.ok) throw new Error("Responsfeil fra server");
         const data = await res.json();
         totalNok = data.total || 0;
-        pledgeNok = data.pledges || 0;
+        stotteNok = data.stotte || 0;
         goalNok = data.goal || 500000;
         
         // Oppdater progressbar
-        let totalAmount = totalNok + pledgeNok;
+        let totalAmount = totalNok + stotteNok + equityNok;
         let prosent = Math.min(100, Math.round(100 * totalNok / goalNok));
-        let pledgeProsent = Math.min(100, Math.round(100 * pledgeNok / goalNok));
+        let stotteProsent = Math.min(100, Math.round(100 * stotteNok / goalNok));
         
         progressBar.style.width = prosent + "%";
-        pledgeBar.style.width = pledgeProsent + "%";
+        pledgeBar.style.width = stotteProsent + "%";
         
         // Oppdater tekst
         statusText.textContent = totalNok.toLocaleString('no-NO') + ' kr';
-        pledgeText.textContent = pledgeNok.toLocaleString('no-NO') + ' kr';
+        stotteText.textContent = stotteNok.toLocaleString('no-NO') + ' kr';
+        equityText.textContent = equityNok.toLocaleString('no-NO') + ' kr';
         totalText.textContent = totalAmount.toLocaleString('no-NO') + ' kr';
         
         // Oppdater progress bar tekst
         if (prosent > 0) {
           progressBar.innerHTML = `<span class="progress-text">${prosent}%</span>`;
         }
-        if (pledgeProsent > 0) {
-          pledgeBar.innerHTML = `<span class="pledge-text">${pledgeProsent}%</span>`;
+        if (stotteProsent > 0) {
+          pledgeBar.innerHTML = `<span class="pledge-text">${stotteProsent}%</span>`;
         }
         
       } catch (e) {
         // Ingen data tilgjengelig ennå – vis 0 som standard
         totalNok = 0;
-        pledgeNok = 0;
-        const totalAmount = 0;
+        stotteNok = 0;
+        const totalAmount = equityNok;
         const prosent = 0;
-        const pledgeProsent = 0;
+        const stotteProsent = 0;
 
         progressBar.style.width = '0%';
         pledgeBar.style.width = '0%';
 
         statusText.textContent = '0 kr';
-        pledgeText.textContent = '0 kr';
-        totalText.textContent = '0 kr';
+        stotteText.textContent = '0 kr';
+        equityText.textContent = equityNok.toLocaleString('no-NO') + ' kr';
+        totalText.textContent = totalAmount.toLocaleString('no-NO') + ' kr';
 
         progressBar.innerHTML = '<span class="progress-text">0%</span>';
         pledgeBar.innerHTML = '<span class="pledge-text">0%</span>';
