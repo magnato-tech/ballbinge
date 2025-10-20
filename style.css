@@ -14,27 +14,28 @@ body {
   justify-content: center;     /* behold midtstilt horisontalt */
   text-align: center;
   color: white;
-  padding-top: 15vh;           /* gir litt luft fra toppen */
+  padding-top: 8vh;           /* redusert fra 15vh til 8vh for å flytte høyere opp */
 }
 
 .hero-content {
   max-width: 700px;
-  background: rgba(0, 0, 0, 0.3); /* lett gjennomsiktig bakgrunn for lesbarhet */
-  padding: 1em 2em;
+  background: rgba(0, 0, 0, 0.4); /* økt opacity for bedre lesbarhet */
+  padding: 1.5em 2em;
   border-radius: 12px;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
   opacity: 0;
-  animation: fadeInHeroText 1.2s ease-out 0.3s forwards;
+  animation: fadeInHeroText 1.5s ease-out 0.5s forwards;
+  backdrop-filter: blur(2px); /* legg til blur-effekt for bedre lesbarhet */
 }
 
 @keyframes fadeInHeroText {
   from {
     opacity: 0;
-    transform: translateY(40px);
+    transform: translateY(60px) scale(0.95);
   }
   to {
     opacity: 1;
-    transform: translateY(0);
+    transform: translateY(0) scale(1);
   }
 }
 
