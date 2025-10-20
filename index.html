@@ -1128,22 +1128,22 @@
         }
         
       } catch (e) {
-        // Fallback med eksempeldata for testing
-        totalNok = 125000;
-        pledgeNok = 75000;
-        let totalAmount = totalNok + pledgeNok;
-        let prosent = Math.min(100, Math.round(100 * totalNok / goalNok));
-        let pledgeProsent = Math.min(100, Math.round(100 * pledgeNok / goalNok));
-        
-        progressBar.style.width = prosent + "%";
-        pledgeBar.style.width = pledgeProsent + "%";
-        
-        statusText.textContent = totalNok.toLocaleString('no-NO') + ' kr';
-        pledgeText.textContent = pledgeNok.toLocaleString('no-NO') + ' kr';
-        totalText.textContent = totalAmount.toLocaleString('no-NO') + ' kr';
-        
-        progressBar.innerHTML = `<span class="progress-text">${prosent}%</span>`;
-        pledgeBar.innerHTML = `<span class="pledge-text">${pledgeProsent}%</span>`;
+        // Ingen data tilgjengelig ennå – vis 0 som standard
+        totalNok = 0;
+        pledgeNok = 0;
+        const totalAmount = 0;
+        const prosent = 0;
+        const pledgeProsent = 0;
+
+        progressBar.style.width = '0%';
+        pledgeBar.style.width = '0%';
+
+        statusText.textContent = '0 kr';
+        pledgeText.textContent = '0 kr';
+        totalText.textContent = '0 kr';
+
+        progressBar.innerHTML = '<span class="progress-text">0%</span>';
+        pledgeBar.innerHTML = '<span class="pledge-text">0%</span>';
       }
     }
 
