@@ -108,6 +108,10 @@
       color: #17a2b8;
     }
     
+    .dugnad-amount {
+      color: #fd7e14;
+    }
+    
     .total-amount {
       color: #007a33;
     }
@@ -911,7 +915,8 @@
       <tr><td>Ballbinge inkl. underlag</td><td>200 000</td></tr>
       <tr><td>Grunnarbeid</td><td>200 000</td></tr>
       <tr><td>Lys og støydemping</td><td>100 000</td></tr>
-      <tr class="sum"><td><strong>Totalt</strong></td><td><strong>500 000</strong></td></tr>
+      <tr><td>Dugnad</td><td>100 000</td></tr>
+      <tr class="sum"><td><strong>Totalt</strong></td><td><strong>600 000</strong></td></tr>
     </table>
     <p>Ditt bidrag gjør en stor forskjell!</p>
   </section>
@@ -929,7 +934,7 @@
     <div class="progress-container">
       <div class="progress-labels">
         <span class="progress-label">0 kr</span>
-        <span class="progress-label goal-label">500 000 kr</span>
+        <span class="progress-label goal-label">600 000 kr</span>
       </div>
       <div class="progress-bar-container">
         <div id="progress-bar" class="progress-bar" style="width:0%">
@@ -944,7 +949,7 @@
     <!-- Detaljert status -->
     <div class="donation-details">
       <div class="donation-item">
-        <span class="donation-label">Egenkapital:</span>
+        <span class="donation-label">Egenfinansiering:</span>
         <span id="equity-tekst" class="equity-amount">35 000 kr</span>
       </div>
       <div class="donation-item">
@@ -955,6 +960,10 @@
         <span class="donation-label">Støttemidler:</span>
         <span id="stotte-tekst" class="stotte-amount">...</span>
       </div>
+      <div class="donation-item">
+        <span class="donation-label">Dugnad:</span>
+        <span id="dugnad-tekst" class="dugnad-amount">100 000 kr</span>
+      </div>
       <div class="donation-item total">
         <span class="donation-label">Totalt:</span>
         <span id="total-tekst" class="total-amount">...</span>
@@ -964,7 +973,7 @@
     <div class="donation-goal">
       <div class="goal-info">
         <span class="goal-label">Mål:</span>
-        <span class="goal-amount">500 000 kr</span>
+        <span class="goal-amount">600 000 kr</span>
       </div>
       <div class="goal-deadline">
         <span class="deadline-label">Målsetning:</span>
@@ -1119,12 +1128,13 @@
 
   <script>
     // Hent Vipps-nummer og donasjonssum, oppdater progressbar
-    let totalNok = 0, stotteNok = 0, equityNok = 35000, goalNok = 500000, lastUpdate = 0;
+    let totalNok = 0, stotteNok = 0, equityNok = 35000, dugnadNok = 100000, goalNok = 600000, lastUpdate = 0;
     const progressBar = document.getElementById('progress-bar');
     const pledgeBar = document.getElementById('pledge-bar');
     const statusText = document.getElementById('donasjon-tekst');
     const stotteText = document.getElementById('stotte-tekst');
     const equityText = document.getElementById('equity-tekst');
+    const dugnadText = document.getElementById('dugnad-tekst');
     const totalText = document.getElementById('total-tekst');
     const vippsNumberEl = document.getElementById('vipps-number');
     let vippsRecipient = '';
@@ -1139,7 +1149,7 @@
         goalNok = data.goal || 500000;
         
         // Oppdater progressbar
-        let totalAmount = totalNok + stotteNok + equityNok;
+        let totalAmount = totalNok + stotteNok + equityNok + dugnadNok;
         let prosent = Math.min(100, Math.round(100 * totalNok / goalNok));
         let stotteProsent = Math.min(100, Math.round(100 * stotteNok / goalNok));
         
@@ -1150,6 +1160,7 @@
         statusText.textContent = totalNok.toLocaleString('no-NO') + ' kr';
         stotteText.textContent = stotteNok.toLocaleString('no-NO') + ' kr';
         equityText.textContent = equityNok.toLocaleString('no-NO') + ' kr';
+        dugnadText.textContent = dugnadNok.toLocaleString('no-NO') + ' kr';
         totalText.textContent = totalAmount.toLocaleString('no-NO') + ' kr';
         
         // Oppdater progress bar tekst
@@ -1164,7 +1175,7 @@
         // Ingen data tilgjengelig ennå – vis 0 som standard
         totalNok = 0;
         stotteNok = 0;
-        const totalAmount = equityNok;
+        const totalAmount = equityNok + dugnadNok;
         const prosent = 0;
         const stotteProsent = 0;
 
@@ -1174,6 +1185,7 @@
         statusText.textContent = '0 kr';
         stotteText.textContent = '0 kr';
         equityText.textContent = equityNok.toLocaleString('no-NO') + ' kr';
+        dugnadText.textContent = dugnadNok.toLocaleString('no-NO') + ' kr';
         totalText.textContent = totalAmount.toLocaleString('no-NO') + ' kr';
 
         progressBar.innerHTML = '<span class="progress-text">0%</span>';
