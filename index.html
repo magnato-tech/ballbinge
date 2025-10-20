@@ -933,12 +933,12 @@
     <!-- Hoved progress bar -->
     <div class="progress-container">
       <div class="progress-labels">
-        <span class="progress-label">0 kr</span>
+        <span class="progress-label">135 000 kr</span>
         <span class="progress-label goal-label">600 000 kr</span>
       </div>
       <div class="progress-bar-container">
-        <div id="progress-bar" class="progress-bar" style="width:0%">
-          <span class="progress-text">Laster…</span>
+        <div id="progress-bar" class="progress-bar" style="width:22.5%">
+          <span class="progress-text">22.5%</span>
         </div>
         <div id="pledge-bar" class="pledge-bar" style="width:0%">
           <span class="pledge-text">Tilsagn</span>
@@ -970,16 +970,6 @@
       </div>
     </div>
     
-    <div class="donation-goal">
-      <div class="goal-info">
-        <span class="goal-label">Mål:</span>
-        <span class="goal-amount">600 000 kr</span>
-      </div>
-      <div class="goal-deadline">
-        <span class="deadline-label">Målsetning:</span>
-        <span class="deadline-date">Q3 2026</span>
-      </div>
-    </div>
   </div>
 
   <!-- Vipps-donasjonsskjema -->
@@ -1172,14 +1162,14 @@
         }
         
       } catch (e) {
-        // Ingen data tilgjengelig ennå – vis 0 som standard
+        // Vis nåværende status: 135 000 kr total
         totalNok = 0;
         stotteNok = 0;
         const totalAmount = equityNok + dugnadNok;
-        const prosent = 0;
+        const prosent = Math.round(100 * totalAmount / goalNok);
         const stotteProsent = 0;
 
-        progressBar.style.width = '0%';
+        progressBar.style.width = prosent + '%';
         pledgeBar.style.width = '0%';
 
         statusText.textContent = '0 kr';
@@ -1188,7 +1178,7 @@
         dugnadText.textContent = dugnadNok.toLocaleString('no-NO') + ' kr';
         totalText.textContent = totalAmount.toLocaleString('no-NO') + ' kr';
 
-        progressBar.innerHTML = '<span class="progress-text">0%</span>';
+        progressBar.innerHTML = `<span class="progress-text">${prosent}%</span>`;
         pledgeBar.innerHTML = '<span class="pledge-text">0%</span>';
       }
     }
