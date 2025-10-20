@@ -905,7 +905,7 @@
 
   <!-- FINANSIERING -->
   <section class="finansiering" id="finansiering">
-    <h2>Finansiering</h2>
+    <h2>Budsjett og finansiering</h2>
     <table>
       <tr><th>Kostnadselement</th><th>Beløp (NOK)</th></tr>
       <tr><td>Ballbinge inkl. underlag</td><td>200 000</td></tr>
@@ -913,6 +913,59 @@
       <tr><td>Lys og støydemping</td><td>100 000</td></tr>
       <tr class="sum"><td><strong>Totalt</strong></td><td><strong>500 000</strong></td></tr>
     </table>
+    
+    <!-- Donasjonsstatus flyttet hit -->
+    <div class="donasjons-status">
+      <h3>Status på finansiering</h3>
+      
+      <!-- Hoved progress bar -->
+      <div class="progress-container">
+        <div class="progress-labels">
+          <span class="progress-label">0 kr</span>
+          <span class="progress-label goal-label">500 000 kr</span>
+        </div>
+        <div class="progress-bar-container">
+          <div id="progress-bar" class="progress-bar" style="width:0%">
+            <span class="progress-text">Laster…</span>
+          </div>
+          <div id="pledge-bar" class="pledge-bar" style="width:0%">
+            <span class="pledge-text">Tilsagn</span>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Detaljert status -->
+      <div class="donation-details">
+        <div class="donation-item">
+          <span class="donation-label">Egenkapital:</span>
+          <span id="equity-tekst" class="equity-amount">35 000 kr</span>
+        </div>
+        <div class="donation-item">
+          <span class="donation-label">Samlet inn:</span>
+          <span id="donasjon-tekst" class="donation-amount">...</span>
+        </div>
+        <div class="donation-item">
+          <span class="donation-label">Støttemidler:</span>
+          <span id="stotte-tekst" class="stotte-amount">...</span>
+        </div>
+        <div class="donation-item total">
+          <span class="donation-label">Totalt:</span>
+          <span id="total-tekst" class="total-amount">...</span>
+        </div>
+      </div>
+      
+      <div class="donation-goal">
+        <div class="goal-info">
+          <span class="goal-label">Mål:</span>
+          <span class="goal-amount">500 000 kr</span>
+        </div>
+        <div class="goal-deadline">
+          <span class="deadline-label">Målsetning:</span>
+          <span class="deadline-date">Q3 2026</span>
+        </div>
+      </div>
+    </div>
+    
     <p>Ditt bidrag gjør en stor forskjell!</p>
   </section>
 
@@ -921,57 +974,6 @@
   <h2>Hvordan du kan bidra</h2>
   <p>Vil du støtte prosjektet økonomisk eller som samarbeidspartner?</p>
   <p><strong>Vipps:</strong> <span id="vipps-number">hentes…</span> (merk "Ballbinge Vågsbygd")</p>
-
-  <div class="donasjons-status">
-    <h3>Donasjonsstatus</h3>
-    
-    <!-- Hoved progress bar -->
-    <div class="progress-container">
-      <div class="progress-labels">
-        <span class="progress-label">0 kr</span>
-        <span class="progress-label goal-label">500 000 kr</span>
-      </div>
-      <div class="progress-bar-container">
-        <div id="progress-bar" class="progress-bar" style="width:0%">
-          <span class="progress-text">Laster…</span>
-        </div>
-        <div id="pledge-bar" class="pledge-bar" style="width:0%">
-          <span class="pledge-text">Tilsagn</span>
-        </div>
-      </div>
-    </div>
-    
-    <!-- Detaljert status -->
-    <div class="donation-details">
-      <div class="donation-item">
-        <span class="donation-label">Egenkapital:</span>
-        <span id="equity-tekst" class="equity-amount">35 000 kr</span>
-      </div>
-      <div class="donation-item">
-        <span class="donation-label">Samlet inn:</span>
-        <span id="donasjon-tekst" class="donation-amount">...</span>
-      </div>
-      <div class="donation-item">
-        <span class="donation-label">Støttemidler:</span>
-        <span id="stotte-tekst" class="stotte-amount">...</span>
-      </div>
-      <div class="donation-item total">
-        <span class="donation-label">Totalt:</span>
-        <span id="total-tekst" class="total-amount">...</span>
-      </div>
-    </div>
-    
-    <div class="donation-goal">
-      <div class="goal-info">
-        <span class="goal-label">Mål:</span>
-        <span class="goal-amount">500 000 kr</span>
-      </div>
-      <div class="goal-deadline">
-        <span class="deadline-label">Målsetning:</span>
-        <span class="deadline-date">Q3 2026</span>
-      </div>
-    </div>
-  </div>
 
   <!-- Vipps-donasjonsskjema -->
   <form class="vipps-form" id="vippsForm" onsubmit="return handleVipps(event);">
